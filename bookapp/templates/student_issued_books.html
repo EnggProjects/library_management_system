@@ -1,0 +1,51 @@
+
+
+{% extends 'student_navbar.html' %}
+{% load static %}
+{% block title %} All Issued Books {% endblock %}
+{% block css %}
+{% endblock %}!
+
+{% block body %}
+<div class="container mt-4">
+    <h1 class="text-center"><u>My Issued Books</u></h1>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Sr.No</th>
+                <th>Book Name</th>
+                <th>Author</th>
+                <th>ISBN Number</th>
+                <th>Category</th>
+                <th>Issued Date</th>
+                <th>Expiry Date</th>
+                <th>PDF</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in issued_books %}
+            <tr>
+                <td>{{ forloop.counter }}.</td>
+                <td>{{ book.book.name }}</td>
+                <td>{{ book.book.author }}</td>
+                <td>{{ book.book.isbn }}</td>
+                <td>{{ book.book.category }}</td>
+                <td>{{ book.issued_date }}</td>
+                <td>{{ book.expiry_date }}</td>
+                <td>
+                    {% if book.book.pdf_file %}
+                    <a href="{{ book.book.pdf_file.url }}" class="btn btn-success" download>Download PDF</a>
+                    {% else %}
+                    <p>No PDF available</p>
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8" class="text-center">No books issued yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

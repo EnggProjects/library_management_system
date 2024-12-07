@@ -1,0 +1,28 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block title %} Issue Book {% endblock %}
+{% block css %}
+{% endblock %}
+{% block body %}
+<div class="container mt-4">
+    <form method="POST"> {% csrf_token %}
+        {% for i in form %}
+        <div class="form-group">
+            <br>
+            <label class="control-label col-xs-4">{{ i.label_tag }}</label>
+            <div class="col-xs-8 mt-2">
+                {{ i }}
+            </div>
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-outline-primary mt-4">Issue Book</button>
+    </form>
+</div>
+
+{% if alert %}
+<script>
+    alert("Book Successfully Issued.");
+    document.location = "{{ redirect_url }}";
+</script>
+{% endif %}
+{% endblock %}

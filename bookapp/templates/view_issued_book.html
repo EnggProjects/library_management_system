@@ -1,0 +1,41 @@
+{% extends 'admin_navbar.html' %}
+{% load static %}
+{% block title %} All Issued Books {% endblock %}
+{% block css %}
+{% endblock %}
+{% block body %}
+<div class="container mt-4">
+    <h1 class="text-center"><u>All Issued Books</u></h1>
+    <table class="table table-hover" id="example">
+        <thead>
+            <tr class="text-center">
+                <th>Sr.No</th>
+                <th>Student</th>
+                <th>Student ID</th>
+                <th>Book Name</th>
+                <th>ISBN</th>
+                <th>Issued Date</th>
+                <th>Expiry Date</th>
+                <th>Fine</th>
+            
+            </tr>
+        </thead>
+        <tbody>
+            {% for detail in issued_books_data %}
+            <tr class="text-center">
+                <td>{{ forloop.counter }}.</td>
+                <td>{{ detail.student.user.get_full_name }}</td>
+                <td>{{ detail.student.roll_no }}</td>
+                <td>{{ detail.book.name }}</td>
+                <td>{{ detail.book.isbn }}</td>
+                <td>{{ detail.issued_date }}</td>
+                <td>{{ detail.expiry_date }}</td>
+                <td>₹ {{ detail.fine }}</td>
+                <!-- Remove the part related to book deletion -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+

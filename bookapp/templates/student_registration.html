@@ -1,0 +1,75 @@
+<!-- student_registration.html -->
+
+{% extends 'basic.html' %}
+{% load static %}
+{% block title %} SIES Library {% endblock %}
+{% block css %}
+{% endblock %}
+{% block body %}
+<div class="container">
+    <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
+        <br>
+        <h1 class="text-center"><u>Student Registration</u></h1>
+    <!-- User registration fields -->
+    <div class="row mt-4">
+        <div class="form-group col-md-12">
+            <label><i style="font-weight: bold;">Username</i></label>
+            {{ user_form.username }}
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="form-group col-md-6">
+            <label><i style="font-weight: bold;">Password</i></label>
+            {{ user_form.password1 }}
+        </div>
+        <div class="form-group col-md-6">
+            <label><i style="font-weight: bold;">Confirm Password</i></label>
+            {{ user_form.password2 }}
+        </div>
+    </div>
+    <!-- End of user registration fields -->
+
+    <!-- Student registration fields -->
+    <div class="row mt-4">
+        <div class="form-group col-md-6">
+            <label><i style="font-weight: bold;">Branch Name</i></label>
+            {{ student_form.branch }}
+        </div>
+        <div class="form-group col-md-6">
+            <label><i style="font-weight: bold;">Class Name</i></label>
+            {{ student_form.classroom }}
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="form-group col-md-6">
+            <label><i style="font-weight: bold;">Roll Number</i></label>
+            {{ student_form.roll_no }}
+        </div>
+        <div class="form-group col-md-6">
+            <label><i style="font-weight: bold;">Mobile Number</i></label>
+            {{ student_form.phone }}
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="form-group col-md-6">
+            <label><i style="font-weight: bold;">Student Image</i></label>
+            {{ student_form.image }}
+        </div>
+    </div>
+    <!-- End of student registration fields -->
+
+    <button type="submit" class="btn btn-outline-primary mt-4">Register As Student</button>
+</div>
+</form>
+{% endblock %}
+{% block js %}
+<script>
+    /* {% if alert %} */
+    alert("Registration Successfull.")
+    document.location = "/student_login"
+    /* {% endif %} */
+</script>
+{% endblock %}
